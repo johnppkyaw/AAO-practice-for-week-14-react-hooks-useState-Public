@@ -1,16 +1,26 @@
-import './UseState.css';
+import "./UseState.css";
+import { useState } from "react";
 
 const UseState = () => {
+  const [theme, setTheme] = useState("light");
+  const [count, setCount] = useState(0);
   return (
-    <div className="state">
-      <h1>UseState Component</h1>
-      <button>Dark</button>
-      <button>Light</button>
-      <h2>DISPLAY COUNT HERE</h2>
-      <button>
+    <div className={`state ${theme}`}>
+      <h1>Theme Color: {theme}</h1>
+      <button
+        onClick={() =>
+          setTheme((prevTheme) =>
+            prevTheme === "light" ? (prevTheme = "dark") : "light"
+          )
+        }
+      >
+        Change Theme
+      </button>
+      <h2>Current count: {count}</h2>
+      <button onClick={() => setCount((prevCount) => prevCount + 1)}>
         Increment
       </button>
-      <button>
+      <button onClick={() => setCount((prevCount) => prevCount - 1)}>
         Decrement
       </button>
     </div>
